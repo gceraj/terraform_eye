@@ -8,7 +8,7 @@ module "vpc" {
 module "security_group" {
   source  = "../../b1_security_group"
   globals = var.globals
-  vpc_id  = module.vpc.vpc_id
+  vpc_1_id = module.vpc.vpc_1_id
 }
 
 

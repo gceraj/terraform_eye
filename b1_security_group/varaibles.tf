@@ -2,7 +2,7 @@ variable "globals" {
   type = any
 }
 
-variable "vpc_id" {
+variable "vpc_1_id" {
   type = string
 }
 
