@@ -1,0 +1,22 @@
+resource "aws_instance" "bull_instance_kube_master" {
+  ami                         = var.image_1_id
+  instance_type               = var.globals.ec2_inst_type_master
+  key_name                    = var.globals.ec2_key_name
+  subnet_id                   = var.subnet_1_id
+  iam_instance_profile        = var.iam_instance_profile_s3
+  associate_public_ip_address = true
+  vpc_security_group_ids = [
+    var.sg_id
+  ]
+  tags = {
+    Name = "${var.globals.ec2_master_inst_name}-${var.globals.environment}"
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu" # Default for most Ubuntu AMIs
+    private_key = file(var.globals.file_private_key)
+    host        = self.public_ip
+  }
+
+}

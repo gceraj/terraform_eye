@@ -1,0 +1,32 @@
+globals = {
+  terraform_state_s3    = "falcon-terraform-state-gceraj"
+  environment           = "prod"
+  region                = "us-east-1"
+  project               = "bull"
+  elastic_ip_name       = "eip"
+  vpc_1_cidr_block      = "10.0.1.0/24"
+  vpc_1_subnet_1_block  = "10.0.1.0/28"
+  vpc_1_public_1_block  = "10.0.1.16/29"
+  vpc_1_name            = "vpc-bull"
+  vpc_1_subnet_1_name   = "subnet_bull"
+  vpc_1_public_1_name   = "public_bull"
+  vpc_1_subnet_1_az     = "us-east-1a"
+  sg_1_name             = "kube-security-group"
+  ec2_key_name          = "KP_Kubernetes_A_v1"
+  ec2_inst_type_master  = "t3.small"
+  ec2_inst_type_worker  = "t3.small"
+  ec2_master_inst_name  = "ec2_master"
+  ec2_worker_inst_name  = "ec2_worker"
+  file_private_key      = "C:\\Documents\\MLOps\\key_pair\\KP_Kubernetes_A_v1.pem"
+  file_script_control_1 = "C:\\Proof_Of_Concept\\docker_aws_duck\\f1_create_devopsadmin\\01_create_user.sh"
+  file_script_control_2 = "C:\\Proof_Of_Concept\\docker_aws_duck\\f2_kubernetes_control\\02_kubernets_control.sh"
+  file_script_worker_1  = "C:\\Proof_Of_Concept\\docker_aws_duck\\g1_kubernetes_worker\\01_kubernets_worker.sh"
+  file_script_github    = "C:\\Proof_Of_Concept\\docker_aws_duck\\j1_github_runner\\04_github_runner.sh"
+  join_cmd_s3_name      = "bull-terraform-state/join_command"
+  gitrunnercode         = "AWOBUTECUER4U34P6UADSJLJRVSTK"
+  tags = {
+    owner = "pakkiaraj"
+    team  = "data-eng"
+  }
+}
+
