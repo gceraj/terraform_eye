@@ -28,9 +28,37 @@ https://resource-explorer.console.aws.amazon.com/resource-explorer/home
 
 
 "C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe"  -newtab "ssh -i /mnt/C/Documents/MLOps/key_pair/KP_Kubernetes_A_v1.pem ubuntu@52.72.113.196"
-"C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe"  -newtab "ssh -i /mnt/C/Documents/MLOps/key_pair/KP_Kubernetes_A_v1.pem ubuntu@34.239.146.130"
+"C:\Program Files (x86)\Mobatek\MobaXterm\MobaXterm.exe"  -newtab "ssh -i /mnt/C/Documents/MLOps/key_pair/KP_Kubernetes_A_v1.pem ubuntu@100.52.214.32"
+
+Test-NetConnection -ComputerName 52.72.113.196 -Port 30007
+
+curl localhost:30007
+curl localhost:30080
+
+curl localhost:8000
+curl localhost:8501
+
+---------------------------------------------------------------------
+
+Test-NetConnection -ComputerName 100.52.214.32 -Port 8501
+
+Test-NetConnection -ComputerName 52.72.113.196 -Port 22
+Test-NetConnection -ComputerName 52.72.113.196 -Port 80
+
+
+
+http://52.72.113.196:30007
+http://52.72.113.196:30080
+
+nc -zv 52.72.113.196 30007
 
 http://52.72.113.196:30007/predict
+
+telnet 52.72.113.196 30007
+http://52.72.113.196:30007/predict
+100.52.214.32
+
+curl http://52.72.113.196:30007
 
 
 kubeadm token create --print-join-command
@@ -58,3 +86,79 @@ sudo base64 -w 0 ~/.kube/config
 
 git init
 git remote add origin git@github.com:gceraj/terraform_eye.git
+git add .
+git commit -m "21 working verion"
+git switch -c main
+git push origin main --force
+
+
+ubuntu@ip-10-0-1-13:~$ kubectl get svc --all-namespaces
+NAMESPACE     NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                  AGE
+default       gceraj-api-svc   NodePort    10.98.168.17    <none>        8000:30080/TCP           23h
+default       gceraj-ui-svc    NodePort    10.108.71.103   <none>        8501:30007/TCP           23h
+default       kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP                  23h
+kube-system   kube-dns         ClusterIP   10.96.0.10      <none>        53/UDP,53/TCP,9153/TCP   23h
+ubuntu@ip-10-0-1-13:~$
+
+
+
+
+
+ubuntu@ip-10-0-1-13:~$ ss -tulnp
+Netid          State           Recv-Q          Send-Q                     Local Address:Port                      Peer Address:Port          Process
+udp            UNCONN          0               0                             127.0.0.54:53                             0.0.0.0:*
+udp            UNCONN          0               0                          127.0.0.53%lo:53                             0.0.0.0:*
+udp            UNCONN          0               0                         10.0.1.13%ens5:68                             0.0.0.0:*
+udp            UNCONN          0               0                                0.0.0.0:8472                           0.0.0.0:*
+udp            UNCONN          0               0                              127.0.0.1:323                            0.0.0.0:*
+udp            UNCONN          0               0                                  [::1]:323                               [::]:*
+tcp            LISTEN          0               4096                             0.0.0.0:22                             0.0.0.0:*
+tcp            LISTEN          0               4096                       127.0.0.53%lo:53                             0.0.0.0:*
+tcp            LISTEN          0               128                            127.0.0.1:6010                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:39787                          0.0.0.0:*
+tcp            LISTEN          0               4096                          127.0.0.54:53                             0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10257                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10259                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10249                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10248                          0.0.0.0:*
+tcp            LISTEN          0               4096                           10.0.1.13:2380                           0.0.0.0:*
+tcp            LISTEN          0               4096                           10.0.1.13:2379                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:2379                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:2381                           0.0.0.0:*
+tcp            LISTEN          0               4096                                   *:10250                                *:*
+tcp            LISTEN          0               4096                                [::]:22                                [::]:*
+tcp            LISTEN          0               4096                                   *:10256                                *:*
+tcp            LISTEN          0               4096                                   *:6443                                 *:*
+tcp            LISTEN          0               128                                [::1]:6010                              [::]:*
+ubuntu@ip-10-0-1-13:~$
+
+
+
+</html>
+ubuntu@ip-10-0-1-13:~$ ss -tulnp
+Netid          State           Recv-Q          Send-Q                     Local Address:Port                      Peer Address:Port          Process
+udp            UNCONN          0               0                             127.0.0.54:53                             0.0.0.0:*
+udp            UNCONN          0               0                          127.0.0.53%lo:53                             0.0.0.0:*
+udp            UNCONN          0               0                         10.0.1.13%ens5:68                             0.0.0.0:*
+udp            UNCONN          0               0                                0.0.0.0:8472                           0.0.0.0:*
+udp            UNCONN          0               0                              127.0.0.1:323                            0.0.0.0:*
+udp            UNCONN          0               0                                  [::1]:323                               [::]:*
+tcp            LISTEN          0               4096                             0.0.0.0:22                             0.0.0.0:*
+tcp            LISTEN          0               4096                       127.0.0.53%lo:53                             0.0.0.0:*
+tcp            LISTEN          0               128                            127.0.0.1:6010                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:39787                          0.0.0.0:*
+tcp            LISTEN          0               4096                          127.0.0.54:53                             0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10257                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10259                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10249                          0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:10248                          0.0.0.0:*
+tcp            LISTEN          0               4096                           10.0.1.13:2380                           0.0.0.0:*
+tcp            LISTEN          0               4096                           10.0.1.13:2379                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:2379                           0.0.0.0:*
+tcp            LISTEN          0               4096                           127.0.0.1:2381                           0.0.0.0:*
+tcp            LISTEN          0               4096                                   *:10250                                *:*
+tcp            LISTEN          0               4096                                [::]:22                                [::]:*
+tcp            LISTEN          0               4096                                   *:10256                                *:*
+tcp            LISTEN          0               4096                                   *:6443                                 *:*
+tcp            LISTEN          0               128                                [::1]:6010                              [::]:*
+ubuntu@ip-10-0-1-13:~$

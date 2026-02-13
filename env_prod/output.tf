@@ -1,9 +1,9 @@
 
 
-output "m_image_id" {
-  description = "Ubuntu 24.04 image id:"
-  value       = module.ec2_image.m_image_id
-}
+#output "m_image_id" {
+#  description = "Ubuntu 24.04 image id:"
+#  value       = module.ec2_image.m_image_id
+#}
 
 output "o_eip_address" {
   description = "Elastic IP Address:"

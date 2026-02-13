@@ -34,22 +34,22 @@ module "security_group_rule" {
   depends_on = [module.security_group]
 }
 
-module "ec2_image" {
-  source  = "../c1_ec2_image"
-  globals = var.globals
-
-  depends_on = [module.security_group_rule]
-}
+#module "ec2_image" {
+#  source  = "../c1_ec2_image"
+#  globals = var.globals
+#
+#  depends_on = [module.security_group_rule]
+#}
 
 module "ec2_instance_master" {
   source                  = "../d1_ec2_instance_master"
   globals                 = var.globals
   sg_id                   = module.security_group.m_sg_id
-  image_1_id              = module.ec2_image.m_image_id
+  image_1_id              = var.globals.amid_id
   subnet_1_id             = module.vpc.m_subnet_1_id
   iam_instance_profile_s3 = module.roles.s3_role_name
 
-  depends_on = [module.ec2_image]
+  depends_on = [module.security_group_rule]
 }
 
 module "eip_ec2_associate" {
@@ -80,11 +80,11 @@ module "ec2_instance_worker" {
   source                  = "../d2_ec2_instance_worker"
   globals                 = var.globals
   sg_id                   = module.security_group.m_sg_id
-  image_1_id              = module.ec2_image.m_image_id
+  image_1_id              = var.globals.amid_id
   subnet_1_id             = module.vpc.m_subnet_1_id
   iam_instance_profile_s3 = module.roles.s3_role_name
 
-  depends_on = [module.ec2_image]
+  depends_on = [module.security_group_rule]
 }
 
 
@@ -113,12 +113,12 @@ module "push_join_command" {
   depends_on = [module.get_join_command]
 }
 
-module "github_runner" {
-  source               = "../j1_github_runner"
-  globals              = var.globals
-  elastic_ip_name_oupt = module.eip.elastic_ip_name_oupt
+#module "github_runner" {
+#  source               = "../j1_github_runner"
+#  globals              = var.globals
+#  elastic_ip_name_oupt = module.eip.elastic_ip_name_oupt
 
-  depends_on = [module.push_join_command]
-}
+#  depends_on = [module.push_join_command]
+#}
 
 

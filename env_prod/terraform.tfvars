@@ -4,6 +4,7 @@ globals = {
   region                = "us-east-1"
   project               = "bull"
   elastic_ip_name       = "eip"
+  amid_id               = "ami-0136735c2bb5cf5bf"
   vpc_1_cidr_block      = "10.0.1.0/24"
   vpc_1_subnet_1_block  = "10.0.1.0/28"
   vpc_1_public_1_block  = "10.0.1.16/29"

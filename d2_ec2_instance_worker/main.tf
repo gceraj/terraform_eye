@@ -8,7 +8,7 @@ resource "aws_instance" "bull_instance_kube_worker" {
     var.sg_id
   ]
   tags = {
-    Name = "${var.globals.ec2_master_inst_name}-${var.globals.environment}"
+    Name = "${var.globals.ec2_worker_inst_name}-${var.globals.environment}"
   }
 
   connection {

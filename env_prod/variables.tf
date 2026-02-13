@@ -5,6 +5,7 @@ variable "globals" {
     region                = string
     project               = string
     elastic_ip_name       = string
+    amid_id               = string
     vpc_1_cidr_block      = string
     vpc_1_name            = string
     vpc_1_subnet_1_block  = string
